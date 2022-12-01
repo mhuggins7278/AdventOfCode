@@ -14,6 +14,5 @@ func main() {
 		log.Println(err)
 	}
 	fmt.Println(path)
-	day1.Part1()
-	day1.Part2()
+	day1.Solve()
 }
