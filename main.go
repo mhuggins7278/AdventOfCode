@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	day1 "github.com/mhuggins7278/AdventOfCode/twozerotwotwo"
+	"github.com/mhuggins7278/AdventOfCode/twozerotwotwo"
 )
 
 func main() {
@@ -14,5 +14,5 @@ func main() {
 		log.Println(err)
 	}
 	fmt.Println(path)
-	day1.Solve()
+	twozerotwotwo.Day1()
 }

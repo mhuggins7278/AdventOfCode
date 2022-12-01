@@ -1,26 +1,28 @@
-package day1
+package twozerotwotwo
 
 import (
 	"fmt"
 	"log"
+	"sort"
 	"strconv"
 
 	"github.com/mhuggins7278/AdventOfCode/utils"
 )
 
-func Part1() {
+func Day1() {
+  utils.PrintMemUsage()
 	scanner := utils.GetFileScanner("./2022/data/day1.txt")
-	mostCalories := 0
 	currCalories := 0
+	elves := make([]int, 0)
 
 	for scanner.Scan() {
 		currValue, err := strconv.ParseInt(scanner.Text(), 10, 0)
+    //parse int will error on an empty string using this as
+    // a signal that we've hit the last entry for an elf
+    // lets add the currCalories to the array and reset the value
 		if err != nil {
-			if mostCalories < currCalories {
-				mostCalories = currCalories
-			}
+			elves = append(elves, currCalories)
 			currCalories = 0
-
 		}
 		currCalories += int(currValue)
 
@@ -28,34 +30,14 @@ func Part1() {
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(mostCalories)
+
+	sort.Slice(elves, func(i, j int) bool {
+		return elves[i] > elves[j]
+	})
+
+	fmt.Printf("Part 1 %v \n", elves[0])
+	fmt.Printf("Part 2 %v \n", elves[0]+elves[1]+elves[2])
+  utils.PrintMemUsage()
 }
 
-func Part2() {
-	scanner := utils.GetFileScanner("./2022/data/day1.txt")
-	mostCalories := 0
-	secondMostCalories := 0
-	thirdMostCalories := 0
-	currCalories := 0
 
-	for scanner.Scan() {
-		currValue, err := strconv.ParseInt(scanner.Text(), 10, 0)
-		if err != nil {
-			if mostCalories < currCalories {
-				mostCalories = currCalories
-			} else if secondMostCalories < currCalories {
-				secondMostCalories = currCalories
-			} else if thirdMostCalories < currCalories {
-				thirdMostCalories = currCalories
-			}
-			currCalories = 0
-		}
-
-		currCalories += int(currValue)
-
-	}
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(mostCalories + secondMostCalories + thirdMostCalories)
-}
