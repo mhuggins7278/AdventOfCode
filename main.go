@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/mhuggins7278/AdventOfCode/twozerotwotwo"
+	"github.com/mhuggins7278/AdventOfCode/utils"
 )
 
 func main() {
@@ -14,5 +15,9 @@ func main() {
 		log.Println(err)
 	}
 	fmt.Println(path)
+utils.PrintMemUsage()
 	twozerotwotwo.Day1()
+  twozerotwotwo.Day2()
+utils.PrintMemUsage()
+
 }

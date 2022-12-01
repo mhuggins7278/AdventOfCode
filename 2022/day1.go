@@ -10,7 +10,6 @@ import (
 )
 
 func Day1() {
-  utils.PrintMemUsage()
 	scanner := utils.GetFileScanner("./2022/data/day1.txt")
 	currCalories := 0
 	elves := make([]int, 0)
@@ -37,7 +36,6 @@ func Day1() {
 
 	fmt.Printf("Part 1 %v \n", elves[0])
 	fmt.Printf("Part 2 %v \n", elves[0]+elves[1]+elves[2])
-  utils.PrintMemUsage()
 }
 
 
