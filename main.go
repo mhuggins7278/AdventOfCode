@@ -16,7 +16,7 @@ func main() {
 	}
 	fmt.Println(path)
 utils.PrintMemUsage()
-	twozerotwotwo.Day1()
+	// twozerotwotwo.Day1()
   twozerotwotwo.Day2()
 utils.PrintMemUsage()
 
