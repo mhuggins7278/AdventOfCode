@@ -134,12 +134,10 @@ func part2(rounds []Round) {
 		}
 	//     // i need to loose
 			if desiredOutcome == "looses" {
-        log.Println("looses", m[them.wins].value)
         scores = append(scores, m[them.wins].value)
 				continue
 			}
 			if desiredOutcome == "wins" {
-        log.Println("wins", m[them.looses].value)
         scores = append(scores, m[them.looses].value + 6)
 				continue
 			}
