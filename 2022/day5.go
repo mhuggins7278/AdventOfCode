@@ -17,7 +17,7 @@ func Day5() {
 	inputFile, _ := os.ReadFile("./2022/data/day5.txt")
 	input = strings.Split(string(inputFile), "\n\n")
 
-	log.Printf("Part 1 input: %v", input)
+	// log.Printf("Part 1 input: %v", input)
 
 	part1 := Day5Part1(input)
 	part2 := Day5Part2(input)
@@ -37,7 +37,7 @@ func buildStacks(input string) map[string][]string {
 		row = strings.ReplaceAll(row, "[", "")
 		row = strings.ReplaceAll(row, "]", "")
 		row := strings.Split(row, " ")
-		log.Printf("row: %v", row)
+		// log.Printf("row: %v", row)
 		for i, _ := range row {
 			char := row[i]
 			var key = strconv.Itoa(i + 1)
@@ -70,13 +70,13 @@ func Day5Part1(input []string) string {
 	stacks := buildStacks(stackString)
 	// log.Printf("Initial stacks: %v", stacks)
 	moves := strings.Split(input[1], "\n")
-	log.Printf("moves: %v", moves)
+	// log.Printf("moves: %v", moves)
 
 	for _, move := range moves {
-		log.Println(move)
+		// log.Println(move)
 		// log.Printf("stacks: %v", stacks)
 		move := strings.Split(strings.Trim(nonAlphanumericRegex.ReplaceAllString(move, " "), " "), " ")
-		log.Printf("move: %v", move)
+		// log.Printf("move: %v", move)
 		quantity, err := strconv.Atoi(move[0])
 		if err != nil {
       log.Println("End of input reached")
@@ -88,13 +88,13 @@ func Day5Part1(input []string) string {
 		// log.Printf("Move %v from: %v to: %v",quantity, from, to)
 		newSource := make([]string, 0)
 		itemsToMove = reverseItemsToMove(append(itemsToMove, stacks[from][0:quantity]...))
-		log.Printf("itemsToMove: %v", itemsToMove)
+		// log.Printf("itemsToMove: %v", itemsToMove)
 		newSource = append(newSource, stacks[from][quantity:]...)
 		newTarget := append(itemsToMove, stacks[to]...)
 		stacks[to] = newTarget
 		stacks[from] = newSource
 	}
-	log.Printf("stacks: %v", stacks)
+	// log.Printf("stacks: %v", stacks)
 	answer := make([]string, 0)
 	keys := make([]int, 0)
 	for key, _ := range stacks {
@@ -105,7 +105,7 @@ func Day5Part1(input []string) string {
 	for _, key := range keys {
 		answer = append(answer, stacks[strconv.Itoa(key)][0])
 	}
-	log.Printf("answer: %v", answer)
+	// log.Printf("answer: %v", answer)
 	return strings.Join(answer, "")
 }
 func Day5Part2(input []string) string {
@@ -116,13 +116,13 @@ func Day5Part2(input []string) string {
 	stacks := buildStacks(stackString)
 	// log.Printf("Initial stacks: %v", stacks)
 	moves := strings.Split(input[1], "\n")
-	log.Printf("moves: %v", moves)
+	// log.Printf("moves: %v", moves)
 
 	for _, move := range moves {
-		log.Println(move)
+		// log.Println(move)
 		// log.Printf("stacks: %v", stacks)
 		move := strings.Split(strings.Trim(nonAlphanumericRegex.ReplaceAllString(move, " "), " "), " ")
-		log.Printf("move: %v", move)
+		// log.Printf("move: %v", move)
 		quantity, err := strconv.Atoi(move[0])
 		if err != nil {
       log.Println("End of input reached")
@@ -134,13 +134,13 @@ func Day5Part2(input []string) string {
 		// log.Printf("Move %v from: %v to: %v",quantity, from, to)
 		newSource := make([]string, 0)
 		itemsToMove = append(itemsToMove, stacks[from][0:quantity]...)
-		log.Printf("itemsToMove: %v", itemsToMove)
+		// log.Printf("itemsToMove: %v", itemsToMove)
 		newSource = append(newSource, stacks[from][quantity:]...)
 		newTarget := append(itemsToMove, stacks[to]...)
 		stacks[to] = newTarget
 		stacks[from] = newSource
 	}
-	log.Printf("stacks: %v", stacks)
+	// log.Printf("stacks: %v", stacks)
 	answer := make([]string, 0)
 	keys := make([]int, 0)
 	for key, _ := range stacks {
