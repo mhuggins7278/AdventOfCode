@@ -24,6 +24,7 @@ func TestDay5Part1(t *testing.T) {
 
 	answer := Day5Part1(sections)
   log.Printf("Answer: %v", answer)
+
 	if answer != "CMZ" {
 		t.Fatalf(`Day 5 Part 1 answer is incorrect: %v`, answer)
 	} else {
