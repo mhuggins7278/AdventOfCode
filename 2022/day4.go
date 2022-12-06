@@ -17,7 +17,7 @@ func Day4() {
 		input = append(input, row)
 	}
 
-	var part1 = day4Part1(input)
+	var part1 = Day4Part1(input)
 	log.Printf("Part 1: %v", part1)
 	var part2 = Day4Part2(input)
 	log.Printf("Part 2: %v", part2)
@@ -36,7 +36,7 @@ func convertToGroup(input string) Group {
 
 }
 
-func day4Part1(input []string) int {
+func Day4Part1(input []string) int {
 	var groupsWithOverLap int = 0
 	for _, groupPair := range input {
 		var currRow = strings.Split(groupPair, ",")

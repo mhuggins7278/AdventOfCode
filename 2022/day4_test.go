@@ -12,17 +12,18 @@ var testInput = `2-4,6-8
 6-6,4-6
 2-6,4-8`
 
-// func TestDay4Part1(t *testing.T) {
+func TestDay4Part1(t *testing.T) {
 
-//   lines := strings.Split(testInput, "\n")
+  lines := strings.Split(testInput, "\n")
 
-// 	answer := day4Part1(lines)
-// 	if answer != 2 {
-//     t.Fatalf(`Day 4 Part 1 answer is incorrect: %v`, answer)
-// 	} else {
-//     t.Logf("Day 4 Part 1 anser is correct: %v", answer)
-//   }
-// }
+	answer := Day4Part1(lines)
+	if answer != 2 {
+    t.Fatalf(`Day 4 Part 1 answer is incorrect: %v`, answer)
+	} else {
+    t.Logf("Day 4 Part 1 anser is correct: %v", answer)
+  }
+}
+
 func TestDay4Part2(t *testing.T) {
 
   lines := strings.Split(testInput, "\n")
@@ -34,3 +35,5 @@ func TestDay4Part2(t *testing.T) {
     t.Logf("Day 4 Part 2 anser is correct: %v", answer)
   }
 }
+
+
