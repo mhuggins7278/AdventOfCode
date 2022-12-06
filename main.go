@@ -22,7 +22,7 @@ func main() {
 	// twozerotwotwo.Day2()
 	// twozerotwotwo.Day3()
   // twozerotwotwo.Day4()
-  twozerotwotwo.Day5()
+  twozerotwotwo.Day6()
 	utils.PrintMemUsage()
 	elapsed := time.Since(start)
 	log.Printf("App took %s", elapsed)
