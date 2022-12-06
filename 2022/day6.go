@@ -1,4 +1,4 @@
-package twozerotwotwo
+package main
 
 import (
 	// "fmt"
@@ -14,7 +14,7 @@ import (
 )
 
 func Day6() {
-	input, _ := os.ReadFile("./2022/data/day6.txt")
+	input, _ := os.ReadFile("./data/day6.txt")
 
 	// log.Printf("Part 1 input: %v", input)
 

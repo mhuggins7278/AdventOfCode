@@ -6,7 +6,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/mhuggins7278/AdventOfCode/twozerotwotwo"
 	"github.com/mhuggins7278/AdventOfCode/utils"
 )
 
@@ -18,11 +17,11 @@ func main() {
 	}
 	fmt.Println(path)
 	utils.PrintMemUsage()
-	// twozerotwotwo.Day1()
-	// twozerotwotwo.Day2()
-	// twozerotwotwo.Day3()
-  // twozerotwotwo.Day4()
-  twozerotwotwo.Day6()
+	// main.Day1()
+	// main.Day2()
+	// main.Day3()
+  // main.Day4()
+  Day6()
 	utils.PrintMemUsage()
 	elapsed := time.Since(start)
 	log.Printf("App took %s", elapsed)

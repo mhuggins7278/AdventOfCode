@@ -1,4 +1,4 @@
-package twozerotwotwo
+package main
 
 import (
 	"testing"
