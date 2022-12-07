@@ -2,7 +2,7 @@ package main
 
 import (
 	// "fmt"
-	// "log"
+	"log"
 	"strings"
 	"testing"
 	// "log"
@@ -30,16 +30,16 @@ $ ls
 4060174 j
 8033020 d.log
 5626152 d.ext
-7214296 k
-`
+7214296 k`
 
 func TestDay7Part1(t *testing.T) {
   lines := strings.Split(day7test, "\n")
 	answer := Day7Part1(lines)
-	if answer != 5 {
-		t.Fatalf(`Day 6 Part 1 answer is incorrect: %v`, answer)
+  log.Println(answer)
+	if answer != 95437 {
+		t.Fatalf(`Day 7 Part 1 answer is incorrect: %v`, answer)
 	} else {
-		t.Logf("Day 6 Part 1 answer is correct: %v", answer)
+		t.Logf("Day 7 Part 1 answer is correct: %v", answer)
 	}
 
 }
