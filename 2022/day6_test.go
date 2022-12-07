@@ -14,7 +14,7 @@ var input3 = []byte("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg")
 var input4 = []byte("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw")
 
 func TestDay6Part1(t *testing.T) {
-	answer := Day6Part1(input4)
+	answer := Day6Part1(input4, 4)
 	if answer != 5 {
 		t.Fatalf(`Day 6 Part 1 answer is incorrect: %v`, answer)
 	} else {
