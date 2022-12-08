@@ -34,7 +34,8 @@ $ ls
 
 func TestDay7Part1(t *testing.T) {
   lines := strings.Split(day7test, "\n")
-	answer := Day7Part1(lines)
+	fileSystem := BuildFileSystem(lines)
+answer := Day7Part1(fileSystem)
   log.Println(answer)
 	if answer != 95437 {
 		t.Fatalf(`Day 7 Part 1 answer is incorrect: %v`, answer)
@@ -44,3 +45,15 @@ func TestDay7Part1(t *testing.T) {
 
 }
 
+func TestDay7Part2(t *testing.T) {
+  lines := strings.Split(day7test, "\n")
+	fileSystem := BuildFileSystem(lines)
+answer := Day7Part2(fileSystem)
+  log.Println(answer)
+	if answer != 24933642{
+		t.Fatalf(`Day 7 Part 1 answer is incorrect: %v`, answer)
+	} else {
+		t.Logf("Day 7 Part 1 answer is correct: %v", answer)
+	}
+
+}
