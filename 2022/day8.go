@@ -198,7 +198,7 @@ func Day8Part2(trees [][]int) int {
 			scores = append(scores, score)
 		}
 	}
-	log.Printf("Scores %v", scores)
+	// log.Printf("Scores %v", scores)
 	slices.Sort(scores)
 	bestScore := scores[len(scores)-1]
 	return bestScore
