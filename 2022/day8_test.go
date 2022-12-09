@@ -20,6 +20,7 @@ func TestDay8Part1(t *testing.T) {
   trees := make([][]int, 0)
 
 
+
 	for _, line := range lines {
     heights := strings.Split(line, "")
     row := make([]int, 0)
@@ -29,6 +30,7 @@ func TestDay8Part1(t *testing.T) {
     } 
     trees = append(trees, row)
   }
+  log.Printf("trees is %v long", trees)
 
   answer := Day8Part1(trees)
   log.Println(answer)
@@ -38,7 +40,6 @@ func TestDay8Part1(t *testing.T) {
 	} else {
 		t.Logf("Day 8 Part 1 answer is correct: %v", answer)
 	}
-
 }
 
 // func TestDay7Part2(t *testing.T) {
