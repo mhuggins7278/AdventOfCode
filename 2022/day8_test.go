@@ -19,8 +19,6 @@ func TestDay8Part1(t *testing.T) {
   lines := strings.Split(day8test, "\n")
   trees := make([][]int, 0)
 
-
-
 	for _, line := range lines {
     heights := strings.Split(line, "")
     row := make([]int, 0)
@@ -39,6 +37,28 @@ func TestDay8Part1(t *testing.T) {
 		t.Fatalf(`Day 8 Part 1 answer is incorrect: %v`, answer)
 	} else {
 		t.Logf("Day 8 Part 1 answer is correct: %v", answer)
+	}
+}
+func TestDay8Part2(t *testing.T) {
+  lines := strings.Split(day8test, "\n")
+  trees := make([][]int, 0)
+
+	for _, line := range lines {
+    heights := strings.Split(line, "")
+    row := make([]int, 0)
+    for _, height := range heights {
+      tree, _ := strconv.Atoi(height)
+      row = append(row, tree)
+    } 
+    trees = append(trees, row)
+  }
+
+  answer := Day8Part2(trees)
+  
+	if answer != 21 {
+		t.Fatalf(`Day 8 Part 2 answer is incorrect: %v`, answer)
+	} else {
+		t.Logf("Day 8 Part 2 answer is correct: %v", answer)
 	}
 }
 
