@@ -6,21 +6,15 @@ import (
 	// "sync"
 	"os"
 	// "regexp"
-	"sort"
 	"strconv"
 	"strings"
 	// "github.com/k0kubun/pp"
 	// "reflect"
-	// "github.com/mhuggins7278/AdventOfCode/utils"
+	"github.com/mhuggins7278/AdventOfCode/utils"
 	"golang.org/x/exp/slices"
 	// "github.com/adam-lavrik/go-imath/ix"
 )
 
-func ReverseSlice[T comparable](s []T) {
-	sort.SliceStable(s, func(i, j int) bool {
-		return i > j
-	})
-}
 
 func Day8() {
 
@@ -138,7 +132,7 @@ func Day8Part2(trees [][]int) int {
 			//check if there are any trees taller than this tree in to the left in the same row
 			treesToLeftEdge := make([]int, 0)
 			treesToLeftEdge = append(treesToLeftEdge, row[0:treeColumnPosition]...)
-			ReverseSlice(treesToLeftEdge)
+			utils.ReverseSlice(treesToLeftEdge)
       // log.Printf("to left edge %v", treesToLeftEdge)
 			for i, t := range treesToLeftEdge {
 				if t >= treeHeight || i == len(treesToLeftEdge) -1 {
