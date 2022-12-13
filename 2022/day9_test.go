@@ -34,7 +34,7 @@ U 20`
 //   answer := Day9Part1(lines, 2)
 
 //   // answer := Day8Part1(trees)
-//   // log.Println(answer)
+//   log.Printf("Day9 part 1 test %v"answer)
 //   
 // 	if answer != 13 {
 // 		t.Fatalf(`Day 9 Part 1 answer is incorrect: %v`, answer)
