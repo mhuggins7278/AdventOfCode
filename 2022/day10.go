@@ -1,14 +1,13 @@
 package main
 
 import (
-	// "fmt"
+	"fmt"
 	"log"
 
 	// "sync"
 	"os"
 	// "regexp"
-	// "github.com/k0kubun/pp"
-	// "math"
+	"math"
 	// "github.com/k0kubun/pp"
 	"strconv"
 	"strings"
@@ -18,83 +17,58 @@ import (
 	// "github.com/adam-lavrik/go-imath/ix"
 )
 
-type QueueItem struct {
-	tickAdded, value int
-}
-
-type Queue []QueueItem
-
-func (q *Queue) Push(n QueueItem) {
-	*q = append(*q, n)
-}
-func (q *Queue) Pop() QueueItem {
-	n := (*q)[0]
-	*q = (*q)[1:]
-	return n
-}
-func (q *Queue) Peek() QueueItem {
-	var n QueueItem
-	if len(*q) > 0 {
-		n = (*q)[0]
-	}
-	return n
-
-}
-
 func Day10() {
 	input := make([]string, 0)
-	inputFile, _ := os.ReadFile("./data/day9.txt")
+	inputFile, _ := os.ReadFile("./data/day10.txt")
 	input = strings.Split(strings.TrimSuffix(string(inputFile), "\n"), "\n")
 	// part1 := Day9Part1(input, 2)
 	// log.Printf("Part 1 answer is  %v", part1)
 	part1 := Day10Part1(input)
-	log.Printf("Part 2 answer is  %v", part1)
+	log.Printf("Part 1 answer is  %v", part1)
+	part2 := Day10Part2(input)
+  for _, line := range part2 {
+		for _, char := range line {
+			fmt.Print(char)
+		}
+		fmt.Print("\n")
+	}
 
 }
 
 func Day10Part1(moves []string) int {
-	registerValues := Queue{}
 	registerValue := 1
 	computedValues := []int{}
 	cycleToCheck := 20
+	currCycle := 0
 	retVal := 0
-	noops := 0
 
-	for i, move := range moves {
-		tick := i + 1
-		cycle := (tick * 2) - noops
-		log.Printf("noops is %v", noops)
-		log.Printf("Register value is %v at the start of cycle %v", registerValue, cycle)
+	for _, move := range moves {
 		moveParts := strings.Split(move, " ")
-		// log.Printf("Move: %v", moveParts)
-		if len(moveParts) == 2 {
-			inc, _ := strconv.Atoi(moveParts[1])
-			// log.Printf("Adding value: %v to queue on tick %v", inc, tick)
-			registerValues.Push(QueueItem{tick, inc})
-		} else {
-			noops = noops + 1
-      continue
-		}
-		if cycle == cycleToCheck {
-			log.Printf("Computing new value: Register value at cycle %v is %v", cycle, registerValue)
-			computedValues = append(computedValues, registerValue*cycle)
+		// If this is a noop just increment the cycle
+		currCycle++
+		// pp.Printf("Start Itteration: %v, Cycle: %v Register Value: %v \n", i, currCycle, registerValue)
+		if currCycle == cycleToCheck {
+			// log.Printf("Computing new value: Register value at cycle %v is %v", currCycle, registerValue)
+			computedValues = append(computedValues, registerValue*currCycle)
 			cycleToCheck = cycleToCheck + 40
 
 		}
-		//this has to happen at the end of the cycle nothing should be after this
-		if len(registerValues) > 0 {
-			curValue := registerValues.Peek()
-			if tick-curValue.tickAdded == 1 {
+		if len(moveParts) == 2 {
+			currCycle++
+			if currCycle == cycleToCheck {
+				// log.Printf("Computing new value: Register value at cycle %v is %v", currCycle, registerValue)
+				computedValues = append(computedValues, registerValue*currCycle)
+				cycleToCheck = cycleToCheck + 40
 
-				// log.Printf("Poppping %v off the queue at tick %v",curValue, tick)
-				registerValue += curValue.value
-				registerValues.Pop()
 			}
+			inc, _ := strconv.Atoi(moveParts[1])
+			registerValue += inc
+			// pp.Printf("In If Itteration: %v, Cycle: %v Register Value: %v \n", i, currCycle, registerValue)
 		}
-		log.Printf("Register value is %v at the end of cycle %v", registerValue, cycle)
+		// pp.Printf("End Itteration: %v, Cycle: %v Register Value: %v \n", i, currCycle, registerValue)
 
 	}
-	log.Printf("computedValues: %v", computedValues)
+	// log.Printf("computedValues: %v", computedValues)
 
 	for _, a := range computedValues {
 		retVal = retVal + a
@@ -102,43 +76,36 @@ func Day10Part1(moves []string) int {
 	return retVal
 }
 
-// func Day9Part2(moves []string, size int) int {
-// 	head := &Node{nodeNum: 0,
-// 		x:             12,
-// 		y:             6,
-// 		visitedSpaces: map[string]int{"12 6": 1},
-// 	}
-// 	for i := 1; i < size; i++ {
-// 		head.AddToTail(i, 12, 6)
-// 	}
-// 	pp.Print(head)
-// 	for _, move := range moves {
-// 		log.Printf("Move is %v", move)
-// 		moves := strings.Split(move, " ")
-// 		direction := moves[0]
-// 		numTimes, _ := strconv.Atoi(moves[1])
-// 		for i := 0; i < numTimes; i++ {
-// 			head.Move(direction)
-// 		}
-// 		currentNode := head
-// 		for currentNode != nil {
-// 			log.Printf("Node:%v x:%v y:%v", currentNode.nodeNum, currentNode.x, currentNode.y)
-// 			currentNode = currentNode.prev
-// 		}
-// 	}
-// 	var tail *Node
-// 	currentNode := head
+func getPixel(currCol int, spritPosition int, spriteWidth int) string {
+	if math.Abs(float64(currCol-spritPosition)) <= math.Abs(float64(spriteWidth/2)) {
+		return "#"
+	} else {
+		return " "
+	}
+}
 
-// 	// Iterate through the list until we reach the end
-// 	for currentNode != nil {
-// 		// Save the current node as the tail
-// 		tail = currentNode
-// 		// Move to the next node in the list
-// 		currentNode = currentNode.prev
-// 	}
-// 	// pp.Println(tail.visitedSpaces)
+func Day10Part2(input []string) [6][40]string {
+	spriteWidth := 3
+	spritPosition := 1
+	currCycle := 1
+	var output [6][40]string
+	for _, instruction := range input {
+		currCol := (currCycle - 1) % 40
+		currRow := (currCycle - 1) / 40
+		output[currRow][currCol] = getPixel(currCol, spritPosition, spriteWidth)
+		currCycle++
+		instParts := strings.Split(instruction, " ")
+		if len(instParts) == 2 {
+			currCol = (currCycle - 1) % 40
+			currRow = (currCycle - 1) / 40
+			output[currRow][currCol] = getPixel(currCol, spritPosition, spriteWidth)
+			val, _ := strconv.Atoi(instParts[1])
+			spritPosition += val
+			currCycle++
+		}
 
-// 	retVal := len(tail.visitedSpaces)
+	}
 
-// 	return retVal
-// }
+	return output
+
+}
