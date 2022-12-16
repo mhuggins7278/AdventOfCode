@@ -5,6 +5,7 @@ go 1.19
 require github.com/mhuggins7278/AdventOfCode/utils v0.0.0
 
 require (
+	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/k0kubun/pp v3.0.1+incompatible
 	golang.org/x/exp v0.0.0-20221126150942-6ab00d035af9
 )

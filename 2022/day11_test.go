@@ -3,11 +3,12 @@ package main
 import (
 	// "fmt"
 	"log"
-	"strconv"
+	// "strconv"
 	"strings"
 
 	// "strconv"
-	"github.com/k0kubun/pp"
+	// "github.com/k0kubun/pp"
+	"golang.org/x/exp/slices"
 	"testing"
 )
 
@@ -45,35 +46,31 @@ func TestDay11Part1(t *testing.T) {
 	// pp.Printf("Monkeys is %v", monkeys)
 	monkeyMap := make(MonkeyMap)
 	for _, monkey := range monkeys {
-		newMonkey := Monkey{}
-		for _, line := range strings.Split(monkey, "\n") {
-			log.Printf("line is %v", line)
-			if strings.HasPrefix(strings.Trim(line, " "), "Monkey") {
-				newMonkey.id, _ = strconv.Atoi(strings.Trim(strings.Split(line, " ")[1], ":"))
-			}
-			if strings.HasPrefix(strings.Trim(line, " "), "Starting items:") {
-				newMonkey.items = make([]int, 0)
-				items := strings.Split(strings.Trim(strings.Split(line, ":")[1], " "), ", ")
-				for _, item := range items {
-					i, _ := strconv.Atoi(item)
-					newMonkey.items = append(newMonkey.items, i)
-				}
-			}
-      if strings.HasPrefix(strings.Trim(line, " "), "Operation:") {
-        operation := strings.Split(strings.Trim(strings.Split(line, ":")[1], " "), " ")
-        newMonkey.operation.operator = operation[3]
-        newMonkey.operation.value, _ = strconv.Atoi(operation[4])
-      }
-		}
+		newMonkey := NewMonkey(monkey)
+		// pp.Printf("Monkeyis %v", newMonkey)
 		monkeyMap[newMonkey.id] = newMonkey
 	}
-	pp.Printf("Monkey map is %v", monkeyMap)
+	for i := 0; i < 20; i++ {
+		for j := 0; j < len(monkeyMap); j++ {
+			monkey := monkeyMap[j]
+			// log.Printf("looping monkey is %v", monkey.id)
+			monkey.Turn(monkeyMap)
+		}
+	}
+	// pp.Printf("monkeyMap is %v", monkeyMap)
+	inspectedItems := make([]int, 0)
+	for _, monkey := range monkeyMap {
+		inspectedItems = append(inspectedItems, monkey.inspectedItems)
+	}
+  slices.Sort(inspectedItems) 
+  log.Printf("inspectedItems is %v", inspectedItems)
+  answer = inspectedItems[2] * inspectedItems[3] 
 
 	// answer := Day10Part1(lines)
 
 	// log.Printf("Day10 part 1 test %v",answer)
 
-	if true != false {
+	if answer != 10605 {
 		t.Fatalf(`Day 10 Part 1 answer is incorrect: %v`, answer)
 	} else {
 		t.Logf("Day 10 Part 1 answer is correct: %v", answer)
